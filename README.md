@@ -68,7 +68,7 @@ mkdir -p qb-deb/usr/local/share/icons/hicolor/scalable/status && cp qb/src/icons
 mkdir -p qb-deb/usr/local/share/icons/hicolor/scalable/status && cp qb/src/icons/qbittorrent-tray-light.svg "$_" &&
 mkdir -p qb-deb/usr/local/share/pixmaps && cp qb/dist/unix/menuicons/128x128/apps/qbittorrent.png "$_" &&
 mkdir -p qb-deb/usr/local/bin && cp qb/src/qbittorrent "$_" &&
-dpkg-deb --build --root-owner-group qt-deb
+dpkg-deb --build --root-owner-group qb-deb
 ```
 ### Installing
 ```
