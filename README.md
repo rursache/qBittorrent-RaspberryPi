@@ -42,6 +42,7 @@ make -j$(nproc)
 ```
 ### Create deb file
 **NOTE**: This should be executed outside the `qb` folder (eg. `/home/pi/Downloads`)
+
 **NOTE2**: You can (and should) provide a custom `control` file. The existing one stands as an example
 ```
 wget -O control https://raw.githubusercontent.com/rursache/qBittorrent-RaspberryPi/master/control &&
@@ -85,7 +86,7 @@ sudo bash -c "echo '@qbittorrent' >> /etc/xdg/lxsession/LXDE-pi/autostart"
 ```
 
 ## Notes
-You can also just run `sudo make install` instead of using `checkinstall` (on **libtorrent**) and `dpkg-deb` (on **qbittorrent**) if you do not want packaged `.deb` files
+- You can also just run `sudo make install` instead of using `checkinstall` (on **libtorrent**) and `dpkg-deb` (on **qbittorrent**) if you do not want packaged `.deb` files
 
 ## Credits
 - Official wiki:
