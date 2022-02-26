@@ -38,7 +38,7 @@ export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}
 wget -O qb.zip https://github.com/qbittorrent/qBittorrent/archive/refs/tags/release-4.4.1.zip &&
 unzip qb.zip && rm qb.zip && mv qBit*/ qb && cd qb &&
 ./configure --enable-systemd --with-boost-libdir=/usr/lib/aarch64-linux-gnu CXXFLAGS="-std=c++17" &&
-make -j$(nproc) &&
+make -j$(nproc)
 ```
 ### Create deb file
 **NOTE**: This should be executed outside the `qb` folder (eg. `/home/pi/Downloads`)
