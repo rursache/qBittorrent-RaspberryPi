@@ -85,7 +85,7 @@ sudo bash -c "echo '@qbittorrent' >> /etc/xdg/lxsession/LXDE-pi/autostart"
 ```
 
 ## Notes
-You can also just run `sudo make install` instead of using `checkinstall` (on **libtorrent**) and `dpkg-deb` (on **qbittorrent**)
+You can also just run `sudo make install` instead of using `checkinstall` (on **libtorrent**) and `dpkg-deb` (on **qbittorrent**) if you do not want packaged `.deb` files
 
 ## Credits
 - Official wiki:
