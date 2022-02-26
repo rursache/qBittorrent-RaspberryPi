@@ -1,0 +1,27 @@
+Package: qbittorrent
+Version: 4.4.1
+Architecture: arm64
+Maintainer: Cristian Greco <cristian@debian.org>
+Depends: libc6 (>= 2.29), libgcc-s1 (>= 3.0), libqt5core5a (>= 5.10.0), libqt5dbus5 (>= 5.2.0), libqt5gui5 (>= 5.11.0~rc1) | libqt5gui5-gles (>= 5.11.0~rc1), libqt5network5 (>= 5.9.0~beta), libqt5widgets5 (>= 5.11.0~rc1), libqt5xml5 (>= 5.2.0), libssl1.1 (>= 1.1.0), libstdc++6 (>= 5.2), libtorrent-rasterbar10, zlib1g (>= 1:1.2.0), python3, geoip-database
+Section: net
+Priority: optional
+Homepage: http://www.qbittorrent.org/
+Description: bittorrent client based on libtorrent-rasterbar with a Qt5 GUI
+ BitTorrent client written in C++ and based on libtorrent-rasterbar with a Qt5
+ user interface. qBittorrent is a feature rich but lightweight client that is
+ very similar to uTorrent. Its main features are:
+ .
+  * Polished uTorrent-like user interface
+  * Well integrated and extensible search engine
+  * Remote control through a Web user interface
+  * Vuze-compatible protocol encryption
+  * uTorrent-compatible Peer eXchange (PeX)
+  * DHT (trackerless) support
+  * UPnP / NAT-PMP port forwarding
+  * IPv6 compliant
+  * RSS support with advanced download filters
+  * Advanced control over torrent content and trackers
+  * IP Filtering (eMule / Peer Guardian filters)
+  * Torrents queueing and prioritizing
+  * Good localization (~25 languages supported)
+  * Unicode support
