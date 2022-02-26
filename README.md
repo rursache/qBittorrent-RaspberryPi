@@ -28,7 +28,7 @@ git clone https://github.com/arvidn/libtorrent.git && cd libtorrent && git check
 make -j$(nproc) &&
 sudo mkdir -p /usr/local/share/cmake && sudo mkdir -p /usr/local/include &&
 sudo checkinstall -D --backup=no --pkgname libtorrent --pkgversion $(git tag | grep v1\.2.\. | sort -t _ -n -k 3 | tail -n 1 | cut -c 2-) --provides libtorrent-rasterbar10 &&
-sudo echo '/usr/local/lib' >> /etc/ld.so.conf.d/libtorrent.conf && sudo ldconfig &&
+sudo bash -c "echo '/usr/local/lib' >> /etc/ld.so.conf.d/libtorrent.conf" && sudo ldconfig &&
 export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}
 ```
 
