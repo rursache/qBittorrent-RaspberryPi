@@ -1,20 +1,24 @@
 # qBittorrent 4.4.x on Raspberry Pi (arm64)
 
-The existing qBittorrent package on Raspberry Pi OS is outdated. The various online guides and wiki pages are outdated or does not provide a way to "cook" a `.deb` package file. This repo wants to solve that by providing a working "copy-paste" guide while also offering pre-made `.deb` packages for both **libtorrent** and **qbittorrent**
+The existing qBittorrent package on Raspberry Pi OS is outdated. The various online guides and wiki pages are outdated or does not provide a way to "cook" a `.deb` package file. 
+
+This repo wants to solve that by providing a working "copy-paste" guide while also offering pre-made `.deb` packages for both **libtorrent** and **qbittorrent**
+
+⚠️ For armhf (32 bit Raspberry Pi OS) to work, replace `aarch64-linux-gnu` with `arm-linux-gnueabihf` paths in the `configure` commands (on both **libtorrent** and **qbittorrent**)
 
 ## Install dependecies
 ```
 sudo apt install build-essential pkg-config git automake libtool libc6-dev libboost-dev libboost-system-dev libboost-chrono-dev libboost-random-dev libssl-dev qtbase5-dev qttools5-dev-tools libqt5svg5-dev zlib1g-dev checkinstall unzip -y
 ```
 
-## Increase the swap size (for < 8GB ram)
+## Increase the swap size (for < 4GB RAM RPIs)
 ```
 sudo dphys-swapfile swapoff &&
 sudo nano /etc/dphys-swapfile &&
 sudo dphys-swapfile setup &&
 sudo dphys-swapfile swapon
 ```
-Set `CONF_SWAPSIZE` to `2048` and then reboot
+Set `CONF_SWAPSIZE` to `2048` and then `sudo reboot`
 
 ## Compile libtorrent
 ```
@@ -38,8 +42,10 @@ make -j$(nproc) &&
 ```
 ### Create deb file
 **NOTE**: This should be executed outside the `qb` folder (eg. `/home/pi/Downloads`)
+**NOTE2**: You can (and should) provide a custom `control` file. The existing one stands as an example
 ```
-wget -O control  &&
+wget -O control https://raw.githubusercontent.com/rursache/qBittorrent-RaspberryPi/master/control &&
+sed -i -e '$a\' control &&
 mkdir -p qt-deb/DEBIAN && mv control "$_" &&
 mkdir -p qt-deb/usr/local/share/man/man1 && cp qb/doc/qbittorrent.1 "$_" &&
 mkdir -p qt-deb/usr/local/share/applications && cp qb/dist/unix/org.qbittorrent.qBittorrent.desktop "$_" &&
@@ -71,7 +77,12 @@ sudo dpkg -i qbittorrent*.deb
 ```
 
 ## Updates
-When a new version of **qbittorrent** (or **libtorrent**) you can just edit the `CONTROL` file to bump the version. Then run the same commands replacing the version number with the one you want
+When a new version of **qbittorrent** (or **libtorrent**) is released you can just edit the `CONTROL` file to bump the version. Then run the same commands replacing the version number with the one you want
+
+## Run qBittorrent at boot
+```
+sudo bash -c "echo '@qbittorrent' >> /etc/xdg/lxsession/LXDE-pi/autostart"
+```
 
 ## Notes
 You can also just run `sudo make install` instead of using `checkinstall` (on **libtorrent**) and `dpkg-deb` (on **qbittorrent**)
