@@ -71,6 +71,7 @@ mkdir -p qb-deb/usr/local/bin && cp qb/src/qbittorrent "$_" &&
 dpkg-deb --build --root-owner-group qb-deb
 ```
 ### Installing
+**NOTE**: If you already have qBittorrent installed from the default repos, run `sudo apt remove libtorrent-rasterbar10 -y` before installing the new builds
 ```
 sudo apt install geoip-database -y &&
 sudo dpkg -i libtorrent*.deb &&
