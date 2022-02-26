@@ -1,10 +1,10 @@
-# qBittorrent 4.4.x on Raspberry Pi (arm64)
+# qBittorrent 4.4.x on Raspberry Pi (arm64 + armhf)
 
 The existing qBittorrent package on Raspberry Pi OS is outdated. The various online guides and wiki pages are outdated or does not provide a way to "cook" a `.deb` package file. 
 
-This repo wants to solve that by providing a working "copy-paste" guide while also offering pre-made `.deb` packages for both **libtorrent** and **qbittorrent**
+This repo wants to solve that by providing a working "copy-paste" guide while also offering pre-made `.deb` packages for both **libtorrent** and **qbittorrent**.
 
-⚠️ For armhf (32 bit Raspberry Pi OS) to work, replace `aarch64-linux-gnu` with `arm-linux-gnueabihf` paths in the `configure` commands (on both **libtorrent** and **qbittorrent**)
+⚠️ On armhf (32 bit Raspberry Pi OS) replace `aarch64-linux-gnu` with `arm-linux-gnueabihf` paths in the `configure` commands.
 
 ## Install dependecies
 ```
