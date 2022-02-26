@@ -47,27 +47,27 @@ make -j$(nproc)
 ```
 wget -O control https://raw.githubusercontent.com/rursache/qBittorrent-RaspberryPi/master/control &&
 sed -i -e '$a\' control &&
-mkdir -p qt-deb/DEBIAN && mv control "$_" &&
-mkdir -p qt-deb/usr/local/share/man/man1 && cp qb/doc/qbittorrent.1 "$_" &&
-mkdir -p qt-deb/usr/local/share/applications && cp qb/dist/unix/org.qbittorrent.qBittorrent.desktop "$_" &&
-mkdir -p qt-deb/usr/local/share/metainfo && cp qb/dist/unix/org.qbittorrent.qBittorrent.appdata.xml "$_" &&
-mkdir -p qt-deb/usr/local/share/icons/hicolor/ && cp -R qb/dist/unix/menuicons/128x128 "$_" &&
-mkdir -p qt-deb/usr/local/share/icons/hicolor/ && cp -R qb/dist/unix/menuicons/16x16 "$_" &&
-mkdir -p qt-deb/usr/local/share/icons/hicolor/ && cp -R qb/dist/unix/menuicons/192x192 "$_" &&
-mkdir -p qt-deb/usr/local/share/icons/hicolor/ && cp -R qb/dist/unix/menuicons/22x22 "$_" &&
-mkdir -p qt-deb/usr/local/share/icons/hicolor/ && cp -R qb/dist/unix/menuicons/24x24 "$_" &&
-mkdir -p qt-deb/usr/local/share/icons/hicolor/ && cp -R qb/dist/unix/menuicons/32x32 "$_" &&
-mkdir -p qt-deb/usr/local/share/icons/hicolor/ && cp -R qb/dist/unix/menuicons/36x36 "$_" &&
-mkdir -p qt-deb/usr/local/share/icons/hicolor/ && cp -R qb/dist/unix/menuicons/48x48 "$_" &&
-mkdir -p qt-deb/usr/local/share/icons/hicolor/ && cp -R qb/dist/unix/menuicons/64x64 "$_" &&
-mkdir -p qt-deb/usr/local/share/icons/hicolor/ && cp -R qb/dist/unix/menuicons/72x72 "$_" &&
-mkdir -p qt-deb/usr/local/share/icons/hicolor/ && cp -R qb/dist/unix/menuicons/96x96 "$_" &&
-mkdir -p qt-deb/usr/local/share/icons/hicolor/ && cp -R qb/dist/unix/menuicons/scalable "$_" &&
-mkdir -p qt-deb/usr/local/share/icons/hicolor/scalable/status && cp qb/src/icons/qbittorrent-tray.svg "$_" &&
-mkdir -p qt-deb/usr/local/share/icons/hicolor/scalable/status && cp qb/src/icons/qbittorrent-tray-dark.svg "$_" &&
-mkdir -p qt-deb/usr/local/share/icons/hicolor/scalable/status && cp qb/src/icons/qbittorrent-tray-light.svg "$_" &&
-mkdir -p qt-deb/usr/local/share/pixmaps && cp qb/dist/unix/menuicons/128x128/apps/qbittorrent.png "$_" &&
-mkdir -p qt-deb/usr/local/bin && cp qb/src/qbittorrent "$_" &&
+mkdir -p qb-deb/DEBIAN && mv control "$_" &&
+mkdir -p qb-deb/usr/local/share/man/man1 && cp qb/doc/qbittorrent.1 "$_" &&
+mkdir -p qb-deb/usr/local/share/applications && cp qb/dist/unix/org.qbittorrent.qBittorrent.desktop "$_" &&
+mkdir -p qb-deb/usr/local/share/metainfo && cp qb/dist/unix/org.qbittorrent.qBittorrent.appdata.xml "$_" &&
+mkdir -p qb-deb/usr/local/share/icons/hicolor/ && cp -R qb/dist/unix/menuicons/128x128 "$_" &&
+mkdir -p qb-deb/usr/local/share/icons/hicolor/ && cp -R qb/dist/unix/menuicons/16x16 "$_" &&
+mkdir -p qb-deb/usr/local/share/icons/hicolor/ && cp -R qb/dist/unix/menuicons/192x192 "$_" &&
+mkdir -p qb-deb/usr/local/share/icons/hicolor/ && cp -R qb/dist/unix/menuicons/22x22 "$_" &&
+mkdir -p qb-deb/usr/local/share/icons/hicolor/ && cp -R qb/dist/unix/menuicons/24x24 "$_" &&
+mkdir -p qb-deb/usr/local/share/icons/hicolor/ && cp -R qb/dist/unix/menuicons/32x32 "$_" &&
+mkdir -p qb-deb/usr/local/share/icons/hicolor/ && cp -R qb/dist/unix/menuicons/36x36 "$_" &&
+mkdir -p qb-deb/usr/local/share/icons/hicolor/ && cp -R qb/dist/unix/menuicons/48x48 "$_" &&
+mkdir -p qb-deb/usr/local/share/icons/hicolor/ && cp -R qb/dist/unix/menuicons/64x64 "$_" &&
+mkdir -p qb-deb/usr/local/share/icons/hicolor/ && cp -R qb/dist/unix/menuicons/72x72 "$_" &&
+mkdir -p qb-deb/usr/local/share/icons/hicolor/ && cp -R qb/dist/unix/menuicons/96x96 "$_" &&
+mkdir -p qb-deb/usr/local/share/icons/hicolor/ && cp -R qb/dist/unix/menuicons/scalable "$_" &&
+mkdir -p qb-deb/usr/local/share/icons/hicolor/scalable/status && cp qb/src/icons/qbittorrent-tray.svg "$_" &&
+mkdir -p qb-deb/usr/local/share/icons/hicolor/scalable/status && cp qb/src/icons/qbittorrent-tray-dark.svg "$_" &&
+mkdir -p qb-deb/usr/local/share/icons/hicolor/scalable/status && cp qb/src/icons/qbittorrent-tray-light.svg "$_" &&
+mkdir -p qb-deb/usr/local/share/pixmaps && cp qb/dist/unix/menuicons/128x128/apps/qbittorrent.png "$_" &&
+mkdir -p qb-deb/usr/local/bin && cp qb/src/qbittorrent "$_" &&
 dpkg-deb --build --root-owner-group qt-deb
 ```
 ### Installing
