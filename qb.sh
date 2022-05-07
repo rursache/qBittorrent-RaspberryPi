@@ -15,6 +15,7 @@ function log {
 log "Preparing..."
 
 version=${1:-"4.4.2"}
+workingDir=~/Downloads
 arch=""
 archShort=""
 
@@ -37,7 +38,7 @@ function installDependecies {
 
 function compileLibTorrent {
   log "Compiling libtorrent..."
-  cd ~/Downloads
+  cd ${workingDir}
   git clone https://github.com/arvidn/libtorrent.git && cd libtorrent && git checkout $(git tag | grep v1\.2.\. | sort -t _ -n -k 3 | tail -n 1)
   ./autotool.sh
   ./configure --with-boost-libdir=/usr/lib/aarch64-linux-gnu --with-libiconv CXXFLAGS="-std=c++17"
@@ -47,12 +48,13 @@ function compileLibTorrent {
   sudo checkinstall -y -D --backup=no --pkgname libtorrent --pkgversion $(git tag | grep v1\.2.\. | sort -t _ -n -k 3 | tail -n 1 | cut -c 2-) --provides libtorrent-rasterbar10
   sudo bash -c "echo '/usr/local/lib' >> /etc/ld.so.conf.d/libtorrent.conf" && sudo ldconfig
   export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}
+  mv *.deb ~/Downloads
   log "libtorrent ready"
 }
 
 function compileqBitTorrent {
   log "Compiling qbittorrent..."
-  cd ~/Downloads
+  cd ${workingDir}
   wget -O qb.zip https://github.com/qbittorrent/qBittorrent/archive/refs/tags/release-${version}.zip
   unzip qb.zip && rm qb.zip && mv qBit*/ qb && cd qb
   ./configure --enable-systemd --with-boost-libdir=/usr/lib/aarch64-linux-gnu CXXFLAGS="-std=c++17"
@@ -62,7 +64,7 @@ function compileqBitTorrent {
 
 function createqBitTorrentDeb {
   log "Creating qBitTorrent deb..."
-  cd ~/Downloads
+  cd ${workingDir}
   wget -O control https://raw.githubusercontent.com/rursache/qBittorrent-RaspberryPi/master/control
   sed -i "s/Version: CHANGEME/Version: ${version}/" control
   sed -i "s/Architecture: CHANGEME/Architecture: ${archShort}/" control
@@ -94,14 +96,16 @@ function createqBitTorrentDeb {
 
 function cleanup {
   log "Cleaning up..."
+  cd ${workingDir}
   rm -rf qb-deb
   rm -rf qb
-  rm -rf libtorrent
+  sudo rm -rf libtorrent
   rm qb.sh
 }
 
 installDependecies
 compileLibTorrent
+compileqBitTorrent
 createqBitTorrentDeb
 cleanup
 
