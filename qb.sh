@@ -89,7 +89,8 @@ function createQBitTorrentDeb {
     mkdir -p qb-deb/usr/local/share/pixmaps && cp qb/dist/unix/menuicons/128x128/apps/qbittorrent.png "$_"
     mkdir -p qb-deb/usr/local/bin && cp qb/src/qbittorrent "$_"
     dpkg-deb --build --root-owner-group qb-deb
-    log "qBitTorrent deb done"
+    mv qb-deb.deb "qbittorrent_${version}-1_${archShort}.deb"
+    log "qbittorrent deb done"
 }
 
 function cleanup {
@@ -97,6 +98,7 @@ function cleanup {
     cd ${workingDir}
     rm -rf qb-deb
     rm -rf qb
+    sudo rm description-pak
     sudo rm -rf libtorrent
     rm qb.sh
 }
@@ -150,6 +152,8 @@ installDependecies
 compileLibTorrent
 compileQBitTorrent
 createQBitTorrentDeb
-#cleanup
+cleanup
 
-log "Done"
+log "Success!"
+log "Deb files can be found in ${workingDir}"
+log "Run\nsudo apt install geoip-database -y &&\nsudo dpkg -i libtorrent*.deb &&\nsudo dpkg -i qbittorrent*.deb\nto install them"
