@@ -1,6 +1,6 @@
 Package: qbittorrent
-Version: 4.4.2
-Architecture: arm64
+Version: CHANGEME
+Architecture: CHANGEME
 Maintainer: Radu Ursache
 Depends: libc6 (>= 2.29), libgcc-s1 (>= 3.0), libqt5core5a (>= 5.10.0), libqt5dbus5 (>= 5.2.0), libqt5gui5 (>= 5.11.0~rc1) | libqt5gui5-gles (>= 5.11.0~rc1), libqt5network5 (>= 5.9.0~beta), libqt5widgets5 (>= 5.11.0~rc1), libqt5xml5 (>= 5.2.0), libssl1.1 (>= 1.1.0), libstdc++6 (>= 5.2), libtorrent-rasterbar10, zlib1g (>= 1:1.2.0), python3, geoip-database
 Section: net
