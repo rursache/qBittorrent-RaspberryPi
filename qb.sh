@@ -1,10 +1,18 @@
 #!/bin/bash
 #
-# qBitTorrent + libtorrent compile script for Raspberry pi
+# qBitTorrent + libtorrent compile script for Raspberry Pi
 # Radu Ursache
 # 
 # v1.0
 #
+
+echo "qBitTorrent + libtorrent compile script for Raspberry Pi"
+echo "Build by Radu Ursache"
+echo "v1.0"
+
+###########
+## Funcs ##
+###########
 
 function log {
   echo "--------------"
@@ -12,23 +20,15 @@ function log {
   echo "--------------"
 }
 
-log "Preparing..."
-
-version=${1:-"4.4.2"}
-workingDir=~/Downloads
-arch=""
-archShort=""
-
-if [[ $(getconf LONG_BIT) == 64 ]]
-then
-  arch="aarch64-linux-gnu"
-  archShort="arm64"
-else
-  arch="arm-linux-gnueabihf"
-  archShort="armhf"
-fi
-
-log "Found arch ${arch}"
+function increaseSwapSize {
+  log "Swap too small, resizing..."
+  sudo dphys-swapfile swapoff
+  sudo rm /etc/dphys-swapfile
+  sudo bash -c "echo 'CONF_SWAPSIZE=2048' >> /etc/dphys-swapfile"
+  sudo dphys-swapfile setup
+  sudo dphys-swapfile swapon
+  log "Swap increased to 2GB"
+}
 
 function installDependecies {
   log "Preparing dependecies..."
@@ -52,7 +52,7 @@ function compileLibTorrent {
   log "libtorrent ready"
 }
 
-function compileqBitTorrent {
+function compileQBitTorrent {
   log "Compiling qbittorrent..."
   cd ${workingDir}
   wget -O qb.zip https://github.com/qbittorrent/qBittorrent/archive/refs/tags/release-${version}.zip
@@ -62,7 +62,7 @@ function compileqBitTorrent {
   log "qbittorrent ready"
 }
 
-function createqBitTorrentDeb {
+function createQBitTorrentDeb {
   log "Creating qBitTorrent deb..."
   cd ${workingDir}
   wget -O control https://raw.githubusercontent.com/rursache/qBittorrent-RaspberryPi/master/control
@@ -103,10 +103,49 @@ function cleanup {
   rm qb.sh
 }
 
+
+###########
+## Start ##
+###########
+
+log "Starting..."
+
+while getopts v:d: flag
+do
+    case "${flag}" in
+        v) version=${OPTARG};;
+        d) workingDir=${OPTARG};;
+    esac
+done
+
+version=4.4.2
+workingDir=~/Downloads
+arch=""
+archShort=""
+swapSize=$(grep SwapTotal /proc/meminfo | sed 's/[^0-9]*//g')
+
+if [[ $(getconf LONG_BIT) == 64 ]]
+then
+  arch="aarch64-linux-gnu"
+  archShort="arm64"
+else
+  arch="arm-linux-gnueabihf"
+  archShort="armhf"
+fi
+
+log "Found arch ${arch}"
+
+if [[ $swapSize -gt 2000000 ]]
+then
+  log "Swap size valid"
+else
+  increaseSwapSize
+fi
+
 installDependecies
 compileLibTorrent
-compileqBitTorrent
-createqBitTorrentDeb
-cleanup
+compileQBitTorrent
+createQBitTorrentDeb
+#cleanup
 
 log "Done"
