@@ -2,29 +2,17 @@
 
 The existing qBittorrent package on Raspberry Pi OS is outdated. The various online guides and wiki pages are outdated or does not provide a way to "cook" a `.deb` package file. 
 
-This repo wants to solve that by providing a working "copy-paste" guide while also offering pre-made `.deb` packages for both **libtorrent** and **qbittorrent**.
+This repo wants to solve that by providing a working compiling script while also offering pre-made `.deb` packages for both **libtorrent** and **qbittorrent**.
 
-## Increase the swap size (for < 4GB RAM RPIs)
+## Running the script
 ```
-sudo dphys-swapfile swapoff &&
-sudo nano /etc/dphys-swapfile &&
-sudo dphys-swapfile setup &&
-sudo dphys-swapfile swapon
-```
-Set `CONF_SWAPSIZE` to `2048` and then `sudo reboot`
-
-## Getting the updated debs
-One line:
-```
-wget --no-cache -O qb.sh https://raw.githubusercontent.com/rursache/qBittorrent-RaspberryPi/master/qb.sh &&
-chmod +x qb.sh && ./qb.sh -version 4.4.2
+wget --no-cache -O qb.sh https://raw.githubusercontent.com/rursache/qBittorrent-RaspberryPi/master/qb.sh && chmod +x qb.sh &&
+./qb.sh -v 4.4.2
 ```
 
-Manual:
-- Download the `qb.sh` bash script from this repo
-- Start it with `./qb.sh -version 4.4.2`
-
-Where **-version** is optional and can be any qBitTorrent version
+Parameters:
+- `-v` is optional and can be any qBitTorrent version
+- `-d` can provide a different working directory (defaults to `~/Downloads`)
 
 ### Installing
 **NOTE**: If you already have qBittorrent installed from the default repos, run `sudo apt remove libtorrent-rasterbar10 -y` before installing the new builds
