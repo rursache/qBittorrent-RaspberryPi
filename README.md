@@ -11,11 +11,11 @@ wget --no-cache -O qb.sh https://raw.githubusercontent.com/rursache/qBittorrent-
 ```
 
 Parameters:
-- `-v` is optional and can be any qBitTorrent version
-- `-d` can provide a different working directory (defaults to `~/Downloads`)
+- `-v` (optional) can be any qBitTorrent version
+- `-d` (optional) can provide a different working directory (defaults to `~/Downloads`)
 
 ### Installing
-**NOTE**: If you already have qBittorrent installed from the default repos, run `sudo apt remove libtorrent-rasterbar10 -y` before installing the new builds
+**NOTE**: If you already have qBitTorrent installed from the default repos, run `sudo apt remove libtorrent-rasterbar10 -y` before installing the new builds
 ```
 sudo apt install geoip-database -y &&
 sudo dpkg -i libtorrent*.deb &&
@@ -23,7 +23,7 @@ sudo dpkg -i qbittorrent*.deb
 ```
 
 ## Updates
-When a new version of **qbittorrent** (or **libtorrent**) is released you can just run the script again specifing the version you want
+When a new version of **qbittorrent** (or **libtorrent**) is released you can just run the script again specifing the version you want then following the [installing](https://github.com/rursache/qBittorrent-RaspberryPi#installing) section
 
 ## Run qBittorrent at boot
 ```
@@ -36,4 +36,4 @@ sudo bash -c "echo '@qbittorrent' >> /etc/xdg/lxsession/LXDE-pi/autostart"
 	- [Page 2](https://github.com/qbittorrent/qBittorrent/wiki/Compilation%3A-Debian-and-Ubuntu#compiling-qbittorrent-with-the-gui)
 - Checkinstall [man page](https://manpages.debian.org/jessie/checkinstall/checkinstall.8)
 - This [askubuntu post](https://askubuntu.com/questions/1014619/a-working-version-of-checkinstall) by Stewart which made me switch from `checkinstall` to `dpkg-deb` when building **qbittorrent**
-- A great [tutorial](https://www.internalpointers.com/post/build-binary-deb-package-practical-guide) to build `.deb` packages with `dpkg-deb`
+- A great [tutorial](https://www.internalpointers.com/post/build-binary-deb-package-practical-guide) on how to build `.deb` packages with `dpkg-deb`
