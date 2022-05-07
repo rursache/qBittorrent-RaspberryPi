@@ -62,9 +62,10 @@ function compileqBitTorrent {
 
 function createqBitTorrentDeb {
   log "Creating qBitTorrent deb..."
+  cd ~/Downloads
   wget -O control https://raw.githubusercontent.com/rursache/qBittorrent-RaspberryPi/master/control
-  sed -i "s/Version: CHANGEME/Version: ${version}/" filename
-  sed -i "s/Architecture: CHANGEME/Architecture: ${archShort}/" filename
+  sed -i "s/Version: CHANGEME/Version: ${version}/" control
+  sed -i "s/Architecture: CHANGEME/Architecture: ${archShort}/" control
   sed -i -e '$a\' control
   mkdir -p qb-deb/DEBIAN && mv control "$_"
   mkdir -p qb-deb/usr/local/share/man/man1 && cp qb/doc/qbittorrent.1 "$_"
