@@ -30,9 +30,9 @@ fi
 log "Found arch ${arch}"
 
 function installDependecies {
-  echo "Preparing dependecies..."
+  log "Preparing dependecies..."
   sudo apt update && sudo apt install build-essential pkg-config git automake libtool libc6-dev libboost-dev libboost-system-dev libboost-chrono-dev libboost-random-dev libssl-dev qtbase5-dev qttools5-dev-tools libqt5svg5-dev zlib1g-dev checkinstall unzip geoip-database -y
-  echo "Dependencies ready"
+  log "Dependencies ready"
 }
 
 function compileLibTorrent {
@@ -44,7 +44,7 @@ function compileLibTorrent {
   make -j$(nproc)
   sudo mkdir -p /usr/local/share/cmake && sudo mkdir -p /usr/local/include
   log "Creating libtorrent deb"
-  sudo checkinstall -D --backup=no --pkgname libtorrent --pkgversion $(git tag | grep v1\.2.\. | sort -t _ -n -k 3 | tail -n 1 | cut -c 2-) --provides libtorrent-rasterbar10
+  sudo checkinstall -y -D --backup=no --pkgname libtorrent --pkgversion $(git tag | grep v1\.2.\. | sort -t _ -n -k 3 | tail -n 1 | cut -c 2-) --provides libtorrent-rasterbar10
   sudo bash -c "echo '/usr/local/lib' >> /etc/ld.so.conf.d/libtorrent.conf" && sudo ldconfig
   export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}
   log "libtorrent ready"
