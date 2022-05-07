@@ -6,6 +6,12 @@
 # v1.0
 #
 
+function log {
+  echo "--------------"
+  echo $1
+  echo "--------------"
+}
+
 log "Preparing..."
 
 version=${1:-"4.4.2"}
@@ -22,14 +28,6 @@ else
 fi
 
 log "Found arch ${arch}"
-
-installDependecies
-compileLibTorrent
-createqBitTorrentDeb
-cleanup
-
-log "Done"
-
 
 function installDependecies {
   echo "Preparing dependecies..."
@@ -101,8 +99,9 @@ function cleanup {
   rm qb.sh
 }
 
-function log {
-  echo "--------------"
-  echo $1
-  echo "--------------"
-}
+installDependecies
+compileLibTorrent
+createqBitTorrentDeb
+cleanup
+
+log "Done"
