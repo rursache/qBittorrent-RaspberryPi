@@ -33,15 +33,16 @@ export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}
 ```
 
 ## Compile qBittorrent
-**NOTE**: When changing versions, also update the `CONTROL` file
+**NOTE**: The `CONTROL` file version should match the one here, make sure you update that too
 ```
-wget -O qb.zip https://github.com/qbittorrent/qBittorrent/archive/refs/tags/release-4.4.2.zip &&
+version="4.4.2"
+wget -O qb.zip https://github.com/qbittorrent/qBittorrent/archive/refs/tags/release-${version}.zip &&
 unzip qb.zip && rm qb.zip && mv qBit*/ qb && cd qb &&
 ./configure --enable-systemd --with-boost-libdir=/usr/lib/aarch64-linux-gnu CXXFLAGS="-std=c++17" &&
 make -j$(nproc)
 ```
 ### Create deb file
-**NOTE**: This should be executed outside the `qb` folder (eg. `/home/pi/Downloads`)
+**NOTE**: This should be executed outside the `qb` folder (eg. `~/Downloads`)
 
 **NOTE2**: You can (and should) provide a custom `control` file. The existing one stands as an example
 ```
