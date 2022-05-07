@@ -98,7 +98,6 @@ function cleanup {
     cd ${workingDir}
     rm -rf qb-deb
     rm -rf qb
-    sudo rm description-pak
     sudo rm -rf libtorrent
     rm qb.sh
 }
