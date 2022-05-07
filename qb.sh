@@ -156,4 +156,4 @@ cleanup
 
 log "Success!"
 log "Deb files can be found in ${workingDir}"
-log "Run\nsudo apt install geoip-database -y &&\nsudo dpkg -i libtorrent*.deb &&\nsudo dpkg -i qbittorrent*.deb\nto install them"
+log "Run\n\nsudo apt install geoip-database -y &&\nsudo dpkg -i libtorrent*.deb &&\nsudo dpkg -i qbittorrent*.deb\n\nto install them. Enjoy!"
