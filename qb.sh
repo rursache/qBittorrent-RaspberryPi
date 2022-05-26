@@ -109,6 +109,13 @@ function cleanup {
 
 log "Starting..."
 
+version=4.4.2
+workingDir=~/Downloads
+arch=""
+archShort=""
+swapSize=$(grep SwapTotal /proc/meminfo | sed 's/[^0-9]*//g')
+ramSize=$(grep MemTotal /proc/meminfo | sed 's/[^0-9]*//g')
+
 while getopts v:d: flag
 do
     case "${flag}" in
@@ -116,13 +123,6 @@ do
         d) workingDir=${OPTARG};;
     esac
 done
-
-version=4.4.2
-workingDir=~/Downloads
-arch=""
-archShort=""
-swapSize=$(grep SwapTotal /proc/meminfo | sed 's/[^0-9]*//g')
-ramSize=$(grep MemTotal /proc/meminfo | sed 's/[^0-9]*//g')
 
 if [[ $(getconf LONG_BIT) == 64 ]]
 then
