@@ -2,13 +2,11 @@
 #
 # qBitTorrent + libtorrent compile script for Raspberry Pi
 # Radu Ursache
-# 
-# v1.0
 #
 
 echo "qBitTorrent + libtorrent compile script for Raspberry Pi"
 echo "Build by Radu Ursache"
-echo "v1.0"
+echo "v1.0.1"
 
 ###########
 ## Funcs ##
@@ -46,7 +44,7 @@ function compileLibTorrent {
     sudo checkinstall -y -D --backup=no --pkgname libtorrent --pkgversion $(git tag | grep v1\.2.\. | sort -t _ -n -k 3 | tail -n 1 | cut -c 2-) --provides libtorrent-rasterbar10
     sudo bash -c "echo '/usr/local/lib' >> /etc/ld.so.conf.d/libtorrent.conf" && sudo ldconfig
     export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}
-    mv *.deb ~/Downloads
+    mv -f *.deb ~/Downloads
     log "libtorrent ready"
 }
 
@@ -54,7 +52,7 @@ function compileQBitTorrent {
     log "Compiling qbittorrent..."
     cd ${workingDir}
     wget -O qb.zip https://github.com/qbittorrent/qBittorrent/archive/refs/tags/release-${version}.zip
-    unzip qb.zip && rm qb.zip && mv qBit*/ qb && cd qb
+    unzip qb.zip && rm qb.zip && mv -f qBit*/ qb && cd qb
     ./configure --enable-systemd --with-boost-libdir=/usr/lib/aarch64-linux-gnu CXXFLAGS="-std=c++17"
     make -j$(nproc)
     log "qbittorrent ready"
@@ -89,7 +87,7 @@ function createQBitTorrentDeb {
     mkdir -p qb-deb/usr/local/share/pixmaps && cp qb/dist/unix/menuicons/128x128/apps/qbittorrent.png "$_"
     mkdir -p qb-deb/usr/local/bin && cp qb/src/qbittorrent "$_"
     dpkg-deb --build --root-owner-group qb-deb
-    mv qb-deb.deb "qbittorrent_${version}-1_${archShort}.deb"
+    mv -f qb-deb.deb "qbittorrent_${version}-1_${archShort}.deb"
     log "qbittorrent deb done"
 }
 
