@@ -37,7 +37,7 @@ function compileLibTorrent {
     cd ${workingDir}
     git clone https://github.com/arvidn/libtorrent.git && cd libtorrent && git checkout $(git tag | grep v1\.2.\. | sort -t _ -n -k 3 | tail -n 1)
     ./autotool.sh
-    ./configure --with-boost-libdir=/usr/lib/aarch64-linux-gnu --with-libiconv CXXFLAGS="-std=c++17"
+    ./configure --with-boost-libdir=/usr/lib/$arch --with-libiconv CXXFLAGS="-std=c++17"
     make -j$(nproc)
     sudo mkdir -p /usr/local/share/cmake && sudo mkdir -p /usr/local/include
     log "Creating libtorrent deb"
@@ -53,7 +53,7 @@ function compileQBitTorrent {
     cd ${workingDir}
     wget -O qb.zip https://github.com/qbittorrent/qBittorrent/archive/refs/tags/release-${version}.zip
     unzip qb.zip && rm qb.zip && mv -f qBit*/ qb && cd qb
-    ./configure --enable-systemd --with-boost-libdir=/usr/lib/aarch64-linux-gnu CXXFLAGS="-std=c++17"
+    ./configure --enable-systemd --with-boost-libdir=/usr/lib/$arch CXXFLAGS="-std=c++17"
     make -j$(nproc)
     log "qbittorrent ready"
 }
