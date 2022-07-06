@@ -26,9 +26,13 @@ sudo dpkg -i qbittorrent*.deb
 When a new version of **qbittorrent** (or **libtorrent**) is released you can just run the script again specifing the version you want then following the [installing](https://github.com/rursache/qBittorrent-RaspberryPi#installing) section
 
 ## Run qBittorrent at boot
+On Raspberry Pi OS run:
 ```
 sudo bash -c "echo '@qbittorrent' >> /etc/xdg/lxsession/LXDE-pi/autostart"
 ```
+
+## amd64 Support
+Starting with v1.1.0 of the script, amd64 builds are supported as well. Pre-builds are also available in the [Releases](https://github.com/rursache/qBittorrent-RaspberryPi/releases) section
 
 ## Credits
 - Official wiki:
