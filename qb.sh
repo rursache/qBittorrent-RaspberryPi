@@ -6,7 +6,7 @@
 
 echo "qBitTorrent + libtorrent compile script for Raspberry Pi"
 echo "Build by Radu Ursache"
-echo "v1.0.1"
+echo "v1.1.0"
 
 ###########
 ## Funcs ##
@@ -28,7 +28,7 @@ function increaseSwapSize {
 
 function installDependecies {
     log "Preparing dependecies..."
-    sudo apt update && sudo apt install build-essential pkg-config git automake libtool libc6-dev libboost-dev libboost-system-dev libboost-chrono-dev libboost-random-dev libssl-dev qtbase5-dev qttools5-dev-tools libqt5svg5-dev zlib1g-dev checkinstall unzip geoip-database -y
+    sudo apt update && sudo apt install build-essential pkg-config git automake libtool libc6-dev libboost-dev libboost-system-dev libboost-chrono-dev libboost-random-dev libssl-dev qt5-qmake qtbase5-dev qttools5-dev-tools libqt5svg5-dev zlib1g-dev checkinstall unzip geoip-database -y
     log "Dependencies ready"
 }
 
@@ -107,7 +107,7 @@ function cleanup {
 
 log "Starting..."
 
-version=4.4.2
+version=4.4.3.1
 workingDir=~/Downloads
 arch=""
 archShort=""
@@ -122,13 +122,19 @@ do
     esac
 done
 
-if [[ $(getconf LONG_BIT) == 64 ]]
+if [[ $(uname -m) == 'x86_64' ]]
 then
-    arch="aarch64-linux-gnu"
-    archShort="arm64"
+    arch="x86_64-linux-gnu"
+    archShort="amd64"
 else
-    arch="arm-linux-gnueabihf"
-    archShort="armhf"
+    if [[ $(getconf LONG_BIT) == 64 ]]
+    then
+        arch="aarch64-linux-gnu"
+        archShort="arm64"
+    else
+        arch="arm-linux-gnueabihf"
+        archShort="armhf"
+    fi
 fi
 
 log "Found arch ${arch}"
