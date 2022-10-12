@@ -14,6 +14,8 @@ Parameters:
 - `-v` (optional) can be any qBitTorrent version
 - `-d` (optional) can provide a different working directory (defaults to `~/Downloads`)
 
+This script works on arm64, armhf and amd64.
+
 > **Note**
 > 
 > Compilig takes around 30mins on a Raspberry Pi 4 (4GB RAM) with active cooling. 
