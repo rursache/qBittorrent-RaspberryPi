@@ -97,7 +97,6 @@ function cleanup {
     rm -rf qb-deb
     rm -rf qb
     sudo rm -rf libtorrent
-    rm qb.sh
 }
 
 
@@ -107,7 +106,7 @@ function cleanup {
 
 log "Starting..."
 
-version=4.4.3.1
+version=4.4.5
 workingDir=~/Downloads
 arch=""
 archShort=""
