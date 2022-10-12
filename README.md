@@ -14,8 +14,21 @@ Parameters:
 - `-v` (optional) can be any qBitTorrent version
 - `-d` (optional) can provide a different working directory (defaults to `~/Downloads`)
 
+> **Note**
+> 
+> Compilig takes around 30mins on a Raspberry Pi 4 (4GB RAM) with active cooling. 
+> 
+> If you're having issues, make sure the swap size is at least 4GB and be patient.
+
 ### Installing
-**NOTE**: If you already have qBitTorrent installed from the default repos, run `sudo apt remove libtorrent-rasterbar10 -y` before installing the new builds
+> **Note**
+> 
+> If you already have qBitTorrent installed from the default repos, run 
+> 
+> `sudo apt remove libtorrent-rasterbar10 -y`
+> 
+> before installing the new builds
+
 ```
 sudo apt install geoip-database -y &&
 sudo dpkg -i libtorrent*.deb &&
