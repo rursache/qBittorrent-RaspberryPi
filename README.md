@@ -7,7 +7,7 @@ This repo wants to solve that by providing a working compiling script while also
 ## Running the script
 ```
 wget --no-cache -O qb.sh https://raw.githubusercontent.com/rursache/qBittorrent-RaspberryPi/master/qb.sh && chmod +x qb.sh &&
-./qb.sh -v 4.4.3.1
+./qb.sh -v 4.4.5
 ```
 
 Parameters:
