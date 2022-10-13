@@ -32,7 +32,7 @@ This script works on arm64, armhf and amd64.
 > before installing the new builds
 
 ```
-sudo apt install geoip-database -y &&
+sudo apt install qt5-qmake qtbase5-dev qttools5-dev-tools libqt5svg5-dev geoip-database -y &&
 sudo dpkg -i libtorrent*.deb &&
 sudo dpkg -i qbittorrent*.deb
 ```
