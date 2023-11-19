@@ -1,5 +1,7 @@
 # qBittorrent 4.4.x on Raspberry Pi (arm64 + armhf)
 
+⚠️ No longer supported, migrate to a [docker installation](https://hub.docker.com/r/linuxserver/qbittorrent) for a hassle-free experience
+
 The existing qBittorrent package on Raspberry Pi OS is outdated. The various online guides and wiki pages are outdated or does not provide a way to "cook" a `.deb` package file. 
 
 This repo wants to solve that by providing a working compiling script while also offering pre-made `.deb` packages for both **libtorrent** and **qbittorrent**.
